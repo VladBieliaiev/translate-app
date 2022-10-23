@@ -5,25 +5,36 @@ import axios from 'axios';
 
 
 export function Api() {
-   const [langList, setLangList] = useState('')
-   const [inputText, setInputText] = useState('');
-   const [inputLang, setInputLang] = useState('');
-
+   const [langList, setLangList] = useState();
+   const [inputText, setInputText] = useState();
+   const [inputLang, setInputLang] = useState();
+   const [outputText, setOutputText] = useState();
+   const [translateTo, setTranslateTo] = useState()
 
    const getLangList = () => {
       axios.get('https://libretranslate.de/languages')
          .then(resp => setLangList(resp.data))
    }
 
-   const getDetectLang = () => {
+   const detectLang = () => {
       axios.post('https://libretranslate.de/detect', {
          q: inputText
       })
          .then(resp => setInputLang(resp.data[0].language))
    }
 
-   // getDetectLang();
-   const { isLoading, error, data } = useQuery('translate', getLangList, getDetectLang)
+   const translate = () => {
+      axios.post('https://libretranslate.de/translate', {
+         q: inputText,
+         source: inputLang,
+         target: translateTo,
+         format: "text",
+      })
+         .then(resp => setOutputText(resp.data.translatedText))
+   }
+
+
+   const { isLoading, error, data } = useQuery('translate', getLangList, detectLang, translate)
    if (isLoading) {
       return <h1 style={{ "color": "white", "fontSize": "3rem" }}>Loading...</h1>
    }
@@ -31,7 +42,6 @@ export function Api() {
       return <h1 style={{ "color": "white", "fontSize": "3rem" }}>Opss..</h1>
    }
    if (data) {
-      // console.log(data);
    }
 
    return (
@@ -39,9 +49,11 @@ export function Api() {
          <TranslateApp
             inputText={inputText} setInputText={setInputText}
             langList={langList}
+            outputText={outputText} setOutput={setOutputText}
+            setTranslateTo={setTranslateTo} translateTo={translateTo}
          />
 
-         <button onClick={getDetectLang}>HI</button>
+         <button onClick={() => { translate(); detectLang(); }}>HI</button>
       </>
    )
 }

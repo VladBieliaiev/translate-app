@@ -1,9 +1,8 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-// import { Box } from '@mui/system';
 import React, { useState } from 'react'
 
-export function SelectLeng({ langList }) {
-   const [lang, setLang] = useState();
+export function SelectLeng({ langList, setTranslateTo, translateTo }) {
+
 
 
    if (langList) {
@@ -15,9 +14,9 @@ export function SelectLeng({ langList }) {
                   <Select
                      labelId="demo-simple-select-label"
                      id="demo-simple-select"
-                     value={lang}
+                     value={translateTo}
                      label="Age"
-                     onChange={(e) => setLang(e.target.value)}
+                     onChange={(e) => setTranslateTo(e.target.value)}
                   >
                      {langList.map(i => <MenuItem key={i.name} value={i.code}>{i.code}</MenuItem>)}
                   </Select>

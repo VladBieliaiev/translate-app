@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, formControlClasses, TextField } from '@mui/material'
-export function Input({ inputText, setInputText }) {
+export function Input({ setInputText }) {
 
    return (
       <>
