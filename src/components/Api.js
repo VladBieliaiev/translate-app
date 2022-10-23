@@ -41,20 +41,19 @@ export function Api() {
    if (error) {
       return <h1 style={{ "color": "white", "fontSize": "3rem" }}>Opss..</h1>
    }
-   if (data) {
-   }
 
+   // , detectLang, translate
    return (
-      <>
+      <div className='App'>
          <TranslateApp
             inputText={inputText} setInputText={setInputText}
             langList={langList}
             outputText={outputText} setOutput={setOutputText}
             setTranslateTo={setTranslateTo} translateTo={translateTo}
          />
-
-         <button onClick={() => { translate(); detectLang(); }}>HI</button>
-      </>
+         <button className='btn'
+            onClick={() => { translate(); detectLang(); }}>HI</button>
+      </div >
    )
 }
 

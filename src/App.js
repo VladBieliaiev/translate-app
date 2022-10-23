@@ -1,4 +1,4 @@
-import './App.css';
+import './reset.css';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Api } from './components/Api'
 

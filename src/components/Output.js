@@ -4,7 +4,7 @@ export function Output({ outputText }) {
 
 
    return (
-      <div className='uotput'>
+      <div className='text-field'>
          <h1>{outputText}</h1>
       </div>
    )
