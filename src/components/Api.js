@@ -42,7 +42,7 @@ export function Api() {
       return <h1 style={{ "color": "white", "fontSize": "3rem" }}>Opss..</h1>
    }
 
-   // , detectLang, translate
+
    return (
       <div className='App'>
          <TranslateApp
