@@ -26,5 +26,6 @@ export function SelectLeng({ langList }) {
          </div>
       )
    }
+
 }
 
